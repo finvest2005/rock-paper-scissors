@@ -30,8 +30,40 @@ function getHumanChoice() {
   }
 }
 
+function playRound(humanChoice, computerChoice) {
+  humanChoice = humanChoice.toLowerCase();
+  if (
+    (humanChoice == 'rock' && computerChoice == 'scissors') ||
+    (humanChoice == 'paper' && computerChoice == 'rock') ||
+    (humanChoice == 'scissors' && computerChoice == 'paper')
+  ) {
+    humanScore++;
+    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+  } else if (
+    (humanChoice == 'rock' && computerChoice == 'rock') ||
+    (humanChoice == 'paper' && computerChoice == 'paper') ||
+    (humanChoice == 'scissors' && computerChoice == 'scissors')
+  ) {
+    console.log(`You are equal! ${humanChoice} equal to ${computerChoice}`);
+    humanScore++;
+    ComputerScore++;
+  } else {
+    ComputerScore++;
+    console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+  }
+  console.log('You : ' + humanScore + ' Computer : ' + ComputerScore);
+}
+
+let humanScore = 0;
+let ComputerScore = 0;
+
 // test output for getComputerChoice() function
-for (let index = 1; index <= 10; index++) console.log(getComputerChoice());
+// for (let index = 1; index <= 10; index++) console.log(getComputerChoice());
 
 // test output for getHumanChoice() function
-console.log(getHumanChoice());
+// console.log(getHumanChoice());
+
+playRound(getHumanChoice(), getComputerChoice());
+playRound(getHumanChoice(), getComputerChoice());
+playRound(getHumanChoice(), getComputerChoice());
+playRound(getHumanChoice(), getComputerChoice());
