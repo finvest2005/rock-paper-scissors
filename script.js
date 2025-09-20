@@ -32,7 +32,7 @@ function getHumanChoice() {
 
 function playGame() {
   let humanScore = 0;
-  let ComputerScore = 0;
+  let computerScore = 0;
   function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     if (
@@ -51,16 +51,23 @@ function playGame() {
       // humanScore++;
       // ComputerScore++;
     } else {
-      ComputerScore++;
+      computerScore++;
       console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
     }
   }
   for (let index = 1; index <= 5; index++) {
     playRound(getHumanChoice(), getComputerChoice());
     console.log(
-      'Round ' + index + ' You : ' + humanScore + ' Computer : ' + ComputerScore
+      'Round ' + index + ' You : ' + humanScore + ' Computer : ' + computerScore
     );
   }
+  const result =
+    humanScore > computerScore
+      ? 'YOU WIN !!!'
+      : humanScore < computerScore
+      ? 'YOU LOSE !!!'
+      : 'YOU EQUAL';
+  console.log(result);
 }
 
 // test output for getComputerChoice() function
