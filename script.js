@@ -4,17 +4,34 @@ function getComputerChoice() {
   switch (randomFromOneToThree) {
     case 1:
       return 'rock';
-      break;
     case 2:
       return 'paper';
-      break;
     case 3:
       return 'scissors';
-      break;
     default:
+      return undefined;
+  }
+}
+
+function getHumanChoice() {
+  const userChoice = prompt(
+    'Your choice:  Enter 1 - for rock, 2 - for paper, 3 - for scissors'
+  );
+  switch (userChoice) {
+    case '1':
+      return 'rock';
+    case '2':
+      return 'paper';
+    case '3':
+      return 'scissors';
+    default:
+      1;
       return undefined;
   }
 }
 
 // test output for getComputerChoice() function
 for (let index = 1; index <= 10; index++) console.log(getComputerChoice());
+
+// test output for getHumanChoice() function
+console.log(getHumanChoice());
