@@ -48,8 +48,6 @@ function playGame() {
       (humanChoice == 'scissors' && computerChoice == 'scissors')
     ) {
       console.log(`You are equal! ${humanChoice} equal to ${computerChoice}`);
-      // humanScore++;
-      // ComputerScore++;
     } else {
       computerScore++;
       console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
