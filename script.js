@@ -6,6 +6,9 @@ const info = document.querySelector('#info');
 const user = document.querySelector('#user');
 const comp = document.querySelector('#comp');
 const winner = document.querySelector('#winner');
+const btn1 = document.querySelector('#id1');
+const btn2 = document.querySelector('#id2');
+const btn3 = document.querySelector('#id3');
 
 function getComputerChoice() {
   const randomFromZeroToOne = Math.random();
@@ -74,15 +77,19 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const btn1 = document.querySelector('#id1');
-const btn2 = document.querySelector('#id2');
-const btn3 = document.querySelector('#id3');
-btn1.addEventListener('click', function (e) {
-  playRound(getHumanChoice('1'), getComputerChoice());
-});
-btn2.addEventListener('click', function (e) {
-  playRound(getHumanChoice('2'), getComputerChoice());
-});
-btn3.addEventListener('click', function (e) {
-  playRound(getHumanChoice('3'), getComputerChoice());
+const btn = document.querySelector('.tablo');
+btn.addEventListener('click', function (e) {
+  switch (e.target) {
+    case btn1:
+      playRound(getHumanChoice('1'), getComputerChoice());
+      break;
+    case btn2:
+      playRound(getHumanChoice('2'), getComputerChoice());
+      break;
+    case btn3:
+      playRound(getHumanChoice('3'), getComputerChoice());
+      break;
+    default:
+      break;
+  }
 });
