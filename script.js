@@ -1,3 +1,12 @@
+let humanScore = 0;
+let computerScore = 0;
+let round = 0;
+const compChoiceText = document.querySelector('#compChoice');
+const info = document.querySelector('#info');
+const user = document.querySelector('#user');
+const comp = document.querySelector('#comp');
+const winner = document.querySelector('#winner');
+
 function getComputerChoice() {
   const randomFromZeroToOne = Math.random();
   const randomFromOneToThree = Math.floor(randomFromZeroToOne * 3) + 1;
@@ -13,10 +22,7 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  const userChoice = prompt(
-    'Your choice:  Enter 1 - for rock, 2 - for paper, 3 - for scissors'
-  );
+function getHumanChoice(userChoice) {
   switch (userChoice) {
     case '1':
       return 'rock';
@@ -30,48 +36,53 @@ function getHumanChoice() {
   }
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-  function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-    if (
-      (humanChoice == 'rock' && computerChoice == 'scissors') ||
-      (humanChoice == 'paper' && computerChoice == 'rock') ||
-      (humanChoice == 'scissors' && computerChoice == 'paper')
-    ) {
-      humanScore++;
-      console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-    } else if (
-      (humanChoice == 'rock' && computerChoice == 'rock') ||
-      (humanChoice == 'paper' && computerChoice == 'paper') ||
-      (humanChoice == 'scissors' && computerChoice == 'scissors')
-    ) {
-      console.log(`You are equal! ${humanChoice} equal to ${computerChoice}`);
-    } else {
-      computerScore++;
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-    }
+function playRound(humanChoice, computerChoice) {
+  round++;
+  humanChoice = humanChoice.toLowerCase();
+  if (
+    (humanChoice == 'rock' && computerChoice == 'scissors') ||
+    (humanChoice == 'paper' && computerChoice == 'rock') ||
+    (humanChoice == 'scissors' && computerChoice == 'paper')
+  ) {
+    humanScore++;
+    info.textContent = `Round: ${round} You win! ${humanChoice} beats ${computerChoice}`;
+  } else if (
+    (humanChoice == 'rock' && computerChoice == 'rock') ||
+    (humanChoice == 'paper' && computerChoice == 'paper') ||
+    (humanChoice == 'scissors' && computerChoice == 'scissors')
+  ) {
+    info.textContent = `Round: ${round} You are equal! ${humanChoice} equal to ${computerChoice}`;
+  } else {
+    computerScore++;
+    info.textContent = `Round: ${round} You lose! ${computerChoice} beats ${humanChoice}`;
   }
-  for (let index = 1; index <= 5; index++) {
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log(
-      'Round ' + index + ' You : ' + humanScore + ' Computer : ' + computerScore
-    );
+  compChoiceText.textContent = 'Computer choose ' + computerChoice;
+  user.textContent = 'Your score: ' + humanScore;
+  comp.textContent = 'Comp score: ' + computerScore;
+  winner.textContent = ``;
+
+  if (humanScore == 5) {
+    winner.textContent = `You WIN !!!`;
+    humanScore = 0;
+    computerScore = 0;
+    round = 0;
+  } else if (computerScore == 5) {
+    winner.textContent = `Computer WIN !!!`;
+    humanScore = 0;
+    computerScore = 0;
+    round = 0;
   }
-  const result =
-    humanScore > computerScore
-      ? 'YOU WIN !!!'
-      : humanScore < computerScore
-      ? 'YOU LOSE !!!'
-      : 'YOU EQUAL';
-  console.log(result);
 }
 
-// test output for getComputerChoice() function
-// for (let index = 1; index <= 10; index++) console.log(getComputerChoice());
-
-// test output for getHumanChoice() function
-// console.log(getHumanChoice());
-
-playGame();
+const btn1 = document.querySelector('#id1');
+const btn2 = document.querySelector('#id2');
+const btn3 = document.querySelector('#id3');
+btn1.addEventListener('click', function (e) {
+  playRound(getHumanChoice('1'), getComputerChoice());
+});
+btn2.addEventListener('click', function (e) {
+  playRound(getHumanChoice('2'), getComputerChoice());
+});
+btn3.addEventListener('click', function (e) {
+  playRound(getHumanChoice('3'), getComputerChoice());
+});
