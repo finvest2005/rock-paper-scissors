@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6em;
+  font-family: 'Courier New', Courier, monospace;
+}
+button {
+  padding: 10px 30px;
+  margin: 10px;
+  width: 30%;
+  font-weight: 700;
+  font-size: 36px;
+}
+.tablo {
+  text-align: center;
+}
+#info {
+  margin-top: 30px;
+}
+#user,
+#comp {
+  font-weight: bold;
+  color: blue;
+}
